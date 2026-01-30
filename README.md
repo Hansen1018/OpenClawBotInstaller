@@ -96,7 +96,7 @@
 
 ```bash
 # 下载并运行安装脚本
-curl -fsSL https://raw.githubusercontent.com/miaoxworld/OpenClawBotInstaller/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Hansen1018/OpenClawBotInstaller/main/install.sh | bash
 ```
 
 安装脚本会自动：
