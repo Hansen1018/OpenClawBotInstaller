@@ -96,7 +96,7 @@
 
 ```bash
 # 下载并运行安装脚本
-curl -fsSL https://raw.githubusercontent.com/Hansen1018/OpenClawBotInstaller/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/KnowHunters/OpenClawInstaller/main/install.sh | bash
 ```
 
 安装脚本会自动：
@@ -111,7 +111,7 @@ curl -fsSL https://raw.githubusercontent.com/Hansen1018/OpenClawBotInstaller/mai
 
 ```bash
 # 1. 克隆仓库
-git clone https://github.com/Hansen1018/OpenClawBotInstaller.git
+git clone https://github.com/KnowHunters/OpenClawInstaller.git
 cd OpenClawBotInstaller
 
 # 2. 添加执行权限
@@ -141,7 +141,7 @@ openclaw gateway start
 bash ~/.openclaw/config-menu.sh
 
 # 或从 GitHub 下载运行
-curl -fsSL https://raw.githubusercontent.com/Hansen1018/OpenClawBotInstaller/main/config-menu.sh | bash
+curl -fsSL https://raw.githubusercontent.com/KnowHunters/OpenClawInstaller/main/config-menu.sh | bash
 ```
 
 ## ⚙️ 详细配置
