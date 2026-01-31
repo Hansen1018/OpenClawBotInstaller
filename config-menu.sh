@@ -1276,6 +1276,8 @@ config_openrouter() {
             api_key="$input_key"
 
             # ======= 新增授权逻辑开始 =======
+            # 新增下面这行：强制同步到 OpenClaw 的权限存储
+            openclaw agents add openrouter --key "$api_key"            
             echo ""
             echo -e "${CYAN}正在同步 Key 到 OpenClaw Agent...${NC}"
             # 自动执行 agent 授权命令
