@@ -1274,15 +1274,6 @@ config_openrouter() {
         
         if [ -n "$input_key" ]; then
             api_key="$input_key"
-
-            # ======= 新增授权逻辑开始 =======
-            # 新增下面这行：强制同步到 OpenClaw 的权限存储
-            openclaw agents add openrouter --key "$api_key"            
-            echo ""
-            echo -e "${CYAN}正在同步 Key 到 OpenClaw Agent...${NC}"
-            # 自动执行 agent 授权命令
-            openclaw agents add openrouter --key "$api_key"
-            # ======= 新增授权逻辑结束 =======
         fi
     fi
     
@@ -3404,6 +3395,11 @@ EOF
         openrouter)
             echo "export OPENAI_API_KEY=$api_key" >> "$env_file"
             echo "export OPENAI_BASE_URL=${base_url:-https://openrouter.ai/api/v1}" >> "$env_file"
+            # 自动同步 API Key 到 OpenClaw 认证系统
+            if check_openclaw_installed && [ -n "$api_key" ]; then
+                echo -e "${CYAN}正在同步 API Key 到 OpenClaw 认证系统...${NC}"
+                openclaw agents add openrouter --key "$api_key" 2>/dev/null || true
+            fi            
             ;;
         ollama)
             echo "export OLLAMA_HOST=${base_url:-http://localhost:11434}" >> "$env_file"
