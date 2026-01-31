@@ -1274,6 +1274,13 @@ config_openrouter() {
         
         if [ -n "$input_key" ]; then
             api_key="$input_key"
+
+            # ======= 新增授权逻辑开始 =======
+            echo ""
+            echo -e "${CYAN}正在同步 Key 到 OpenClaw Agent...${NC}"
+            # 自动执行 agent 授权命令
+            openclaw agents add openrouter --key "$api_key"
+            # ======= 新增授权逻辑结束 =======
         fi
     fi
     
