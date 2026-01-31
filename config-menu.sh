@@ -3395,6 +3395,11 @@ EOF
         openrouter)
             echo "export OPENAI_API_KEY=$api_key" >> "$env_file"
             echo "export OPENAI_BASE_URL=${base_url:-https://openrouter.ai/api/v1}" >> "$env_file"
+            # 自动同步 API Key 到 OpenClaw 认证系统
+            if check_openclaw_installed && [ -n "$api_key" ]; then
+                echo -e "${CYAN}正在同步 API Key 到 OpenClaw 认证系统...${NC}"
+                openclaw agents add openrouter --key "$api_key" 2>/dev/null || true
+            fi            
             ;;
         ollama)
             echo "export OLLAMA_HOST=${base_url:-http://localhost:11434}" >> "$env_file"

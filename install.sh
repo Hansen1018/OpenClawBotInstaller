@@ -236,6 +236,17 @@ install_git() {
                 brew install git
                 ;;
             ubuntu|debian)
+                echo "正在配置依赖环境..."
+                
+                # 1. 优先尝试现代化的 GPG 处理方式 (兼容 Ubuntu 22.04/24.04)
+                if [ -d /usr/share/keyrings ]; then
+                  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo gpg --dearmor --yes -o /usr/share/keyrings/yarn-archive-keyring.gpg
+                  echo "deb [signed-by=/usr/share/keyrings/yarn-archive-keyring.gpg] https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list > /dev/null
+                else
+                  # 2. 如果是极旧的系统，回退到传统方式
+                  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+                  echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+                fi            
                 sudo apt-get update && sudo apt-get install -y git
                 ;;
             centos|rhel|fedora)
